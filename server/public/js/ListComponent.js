@@ -49,6 +49,14 @@ export default class ListComponent extends Component {
       return;
     }
 
+    let numOfTasks = store.state.todo.length;
+    document.getElementById('total_count').innerHTML = numOfTasks;
+    const arrDoneTasks = store.state.todo.filter(obj => obj.completed === true);
+    let numOfDoneTasks = arrDoneTasks.length;
+    document.getElementById('done_count').innerHTML = numOfDoneTasks;
+    let numOfToDoTasks = numOfTasks - numOfDoneTasks;
+    document.getElementById('todo_count').innerHTML = numOfToDoTasks;
+
     this.anchor.innerHTML = `
       <ul>
         ${ 
@@ -76,6 +84,7 @@ export default class ListComponent extends Component {
         api.todosUpdate(validToken, store.state.todo[id]._id, bool);
         store.state.todo[id].completed = bool;
         bool ? item.style.textDecoration = 'line-through' : item.style.textDecoration = 'none';
+        this.render();
       })
     )
   }
