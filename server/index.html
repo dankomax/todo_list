@@ -15,7 +15,7 @@
       <form action="">
         <input type="email" id="email" name="login-email" placeholder="Email" />
         <input type="password" id="password" name="login-password" placeholder="Password" />
-        <button type="submit" id="signIn" onclick="login()">Sign In</button>
+        <button type="button" id="signIn">Sign In</button>
       </form>
     </div>
     <!-- <label for="email">Enter your email</label>
@@ -33,20 +33,20 @@
         <section class="app__input">
           <h2 class="app__heading">What you have done</h2>
           <div class="js-items"></div>
-          <form class="new-item boilerform js-form">
+          <form class="new-item boilerform js-form" id="add-new-item-form">
             <div class="boilerform">
               <label for="new-item-field" class="new-item__label c-label">Add a new item</label>
               <input type="text" class="new-item__details c-input-field" id="new-item-field" autocomplete="off" />
-              <button class="c-button new-item__button" onclick="todosCreate()" >Save</button>
+              <button class="c-button new-item__button" >Save</button>
             </div>
           </form>
         </section>
         <aside class="app__status">
           <p role="status" class="visually-hidden">You have done <span class="js-status">1 thing</span> today!</p>
           <div class="app__decor js-count" aria-hidden="true">
-            <small onclick="register()" >Done list</small>
-            <span onclick="todosUpdate()" >0</span>
-            <small onclick="todosDelete()" >things today</small>
+            <small >Done list</small>
+            <span >0</span>
+            <small >things today</small>
           </div>
         </aside>
       </div>
@@ -57,7 +57,7 @@
     <!--<section class="app" id="app"></section> -->
   </main>
 
-  <script src="./public/js/api.js"></script>
+  <!-- <script src="./public/js/api.js"></script> -->
   <script src="./public/js/main.js" type="module" ></script>
 
 
