@@ -14,10 +14,7 @@ export default class ListComponent extends Component {
 
     api.todosRead(validToken)
       .then(res => res.map(task => store.dispatch('addItem', task)))
-      // .then(console.log)
-    // const todoArr = todoList.map(task => task);
-    // console.log(todoList[1]);
-    // console.log(todoArr);
+
 
     const input = document.querySelector('.c-input-field');
     const submit = document.querySelector('.c-button');
@@ -26,13 +23,10 @@ export default class ListComponent extends Component {
       event.preventDefault();
       let value = input.value.trim();
 
-      console.log(validToken);
-
       if (value.length > 4) {
         console.log(value);
         api.todosCreate(validToken, value)
           .then(res => store.dispatch('addItem', res));
-
         input.focus();
       } else {
         alert('task shoud be at least 5 letters long');
@@ -60,7 +54,7 @@ export default class ListComponent extends Component {
         ${ 
           store.state.todo.map(todoItem => 
             `<li>
-              <span>${todoItem.text}</span> 
+              <span style="text-decoration:${todoItem.completed ? 'line-through' : 'none'}">${todoItem.text}</span> 
               <button type="button">delete</button>
             </li>`
           ).join('') 
