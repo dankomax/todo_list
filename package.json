@@ -1,0 +1,23 @@
+{
+  "name": "todo_list",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maxroker/todo_list.git"
+  },
+  "author": "danko_maksym",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/maxroker/todo_list/issues"
+  },
+  "homepage": "https://github.com/maxroker/todo_list#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "save": "^2.4.0"
+  }
+}
