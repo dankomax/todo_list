@@ -5,7 +5,7 @@ export let validToken;
 // let password = '123789';
 
 export default {
-  register: async () => {    
+  register: () => {    
     // let email = document.getElementById("email").value;
     // let password = document.getElementById("password").value;
     return fetch(`${url}register`, {
@@ -45,8 +45,8 @@ export default {
     return token;
   },
 
-  authCheck: async (token) => {
-    return await fetch(`${url}me`, {
+  authCheck: (token) => {
+    return fetch(`${url}me`, {
       method: 'GET',
       headers: {
         'Authorization': token
@@ -56,7 +56,7 @@ export default {
       .then(res => res === token ? token : false)
   },
 
-  todosRead: async (token) => {
+  todosRead: (token) => {
     return fetch(`${url}todos`, {
       method: 'GET',
       headers: {
@@ -65,7 +65,7 @@ export default {
     }).then(res => res.json())
   },
 
-  todosCreate: async (token, todoTask) => {
+  todosCreate: (token, todoTask) => {
     // const todoTask= document.getElementById("new-item-field").value;
     return fetch(`${url}todos`, {
       method: 'POST',
@@ -82,7 +82,7 @@ export default {
     }).then(res => res.json())
   },
 
-  todosUpdate: async (token, id, bool) => {
+  todosUpdate: (token, id, bool) => {
     // const todoTask=document.getElementById("new-item-field").value;
     // let id = '5df959b02ea70c0016826ec2';
     return fetch(`${url}todos/${id}`, {
@@ -100,7 +100,7 @@ export default {
       // .then(res => todosRead())
   },
 
-  todosDelete: async (token, id) => {
+  todosDelete: (token, id) => {
     // const todoTask=document.getElementById("new-item-field").value;
     // let id = '5df959b02ea70c0016826ec2';
     return fetch(`${url}todos/${id}`, {
