@@ -5,13 +5,15 @@
     --text-secondary: #555555;
     --danger: #d62c1a;
     --danger--dark: #a82315;
+    --dark-green: #408040;
+    --spring-green: #48a148;
 }
 
 
 .intro {
     padding: 0 0 1rem 0;
     margin: 0 0 2rem 0;
-    border-bottom: 1px dotted var(--border);
+    border-bottom: 1px solid var(--border);
 }
 
 .intro__heading {
@@ -42,13 +44,16 @@
     text-align: center;
     font-size: 3rem;
     line-height: 1;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
 }
 
 .app__decor small {
     display: block;
     font-size: 1.3rem;
     font-weight: 400;
-    color: var(--text-secondary);
+    color: var(--text-light);
 }
 
 .app__decor > * {
@@ -59,6 +64,10 @@
     margin-top: 0.4rem;
 }
 
+.app__status {
+    margin-top: 6rem;
+}
+
 .app__items {
     list-style: none;
     padding: 0;
@@ -66,10 +75,16 @@
     font-weight: 300;
 }
 
+
 .app__items li {
     position: relative;
     padding: 0 0 0 2rem;
     font-size: 1.3rem;
+}
+
+.app__items .done span {
+    color: var(--text-semilight);
+    text-decoration: line-through;
 }
 
 .app__items li + li {
@@ -83,7 +98,7 @@
     top: -1px;
     color: var(--danger);
     font-weight: 500;
-    font-size: 1rem;
+    font-size: 1.5rem;
     margin: 0 0 0 5px;
     cursor: pointer;
 }
@@ -92,15 +107,48 @@
     color: var(--danger--dark);
 }
 
+.app__items .check_mark {
+    color: var(--dark-green);
+    font-size: 1.4rem;
+}
+
+.app__items .check_mark:hover {
+    color: var(--spring-green);
+}
+
 .new-item {
-    margin: 2rem 0 0 0;
-    padding: 1rem 0 0 0;
-    border-top: 1px dotted var(--border);   
+    /*margin: 1rem 0;*/
+    padding: 1rem 0;
+    /*border-bottom: 1px solid var(--border);   */
+}
+
+.new-item__details {
+    background-color: var(--back-grey);
+    color: var(--text-light);
+    font-size: 1.3rem;
+    padding: 0.5rem;
+    border: 1px solid var(--border);
+}
+
+.new-item__details:hover {
+    border: 1px solid var(--dark-green);
+}
+
+.new-item__details::placeholder {
+    color: var(--text-semilight);
 }
 
 .new-item__button {
     position: relative;
-    
+    background-color: var(--dark-green);
+    color: var(--text-light);
+    font-size: 1.3rem;
+    padding: 0.5rem;
+    border: 1px solid var(--border);
+}
+
+.new-item__button:hover {
+    background-color: var(--spring-green);
 }
 
 .new-item__label {

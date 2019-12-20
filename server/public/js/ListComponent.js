@@ -7,6 +7,10 @@ export default class ListComponent extends Component {
   constructor(app) {
     const template = document.getElementById('list').content.cloneNode(true);
     app.append(template);
+
+
+
+
     super(
       store, 
       document.querySelector('.js-items')
@@ -37,15 +41,51 @@ export default class ListComponent extends Component {
 
     submit.addEventListener('click', handleClick);
 
-    
 
-    // const list = new ListComponent();
-    // list.render();
+
+
+    document.getElementById('done_count').addEventListener('click', () => {
+      const liTodo = document.getElementsByClassName('todo');
+      for(let i=0; i < liTodo.length; i++) {
+        liTodo[i].style.display = 'none';
+      }
+      const liDone = document.getElementsByClassName('done');
+      for(let i=0; i < liDone.length; i++) {
+        liDone[i].style.display = 'block';
+      }
+      // console.log(liDone)
+      // this.render();
+    });
+
+    document.getElementById('todo_count').addEventListener('click', () => {
+      const liTodo = document.getElementsByClassName('todo');
+      for(let i=0; i < liTodo.length; i++) {
+        liTodo[i].style.display = 'block';
+      }
+      const liDone = document.getElementsByClassName('done');
+      for(let i=0; i < liDone.length; i++) {
+        liDone[i].style.display = 'none';
+      }
+    });
+
+    document.getElementById('total_count').addEventListener('click', () => {
+      const liTodo = document.getElementsByClassName('todo');
+      for(let i=0; i < liTodo.length; i++) {
+        liTodo[i].style.display = 'block';
+      }
+      const liDone = document.getElementsByClassName('done');
+      for(let i=0; i < liDone.length; i++) {
+        liDone[i].style.display = 'block';
+      }
+    });
+
   }
+
+
 
   render() {
     if (store.state.todo.length === 0) {
-      this.anchor.innerHTML = `No todo's`;
+      this.anchor.innerHTML = `No tasks todo yet :)`;
       return;
     }
 
@@ -56,34 +96,59 @@ export default class ListComponent extends Component {
     document.getElementById('done_count').innerHTML = numOfDoneTasks;
     let numOfToDoTasks = numOfTasks - numOfDoneTasks;
     document.getElementById('todo_count').innerHTML = numOfToDoTasks;
+    // <button type="button" class="check_mark">&#10003</button>
+
+    
+    // console.log(storeLength);
+    // const cloneTodo = [...store.state.todo];
 
     this.anchor.innerHTML = `
-      <ul>
+      <ul class="app__items">
         ${ 
-          store.state.todo.map(todoItem => 
-            `<li>
-              <span style="text-decoration:${todoItem.completed ? 'line-through' : 'none'}">${todoItem.text}</span> 
-              <button type="button">delete</button>
+          
+          store.state.todo.map((todoItem, i) => 
+            `<li class=${todoItem.completed ? 'done' : 'todo'} ">
+              
+              <button type="button" class="del_mark" id="delBtn_${i}">&#215;</button>
+              <span id="task_${i}">${todoItem.text}</span>  
             </li>`
-          ).join('') 
+          ).reverse().join('') 
         }
       </ul>
     `;
 
-    this.anchor.querySelectorAll('button').forEach((button, id) =>
+    // const deleteTask = (id) => {
+    //   api.todosDelete(validToken, store.state.todo[id]._id)
+    //   store.dispatch('removeItem', { id })
+    //   console.log(id);
+    // } 
+
+    // let delBtnList = this.anchor.getElementsByClassName('del_mark');
+    // for (let i=0; i<delBtnList.length; i++) {
+    //   delBtnList[i].addEventListener('click', () => {
+    //     api.todosDelete(validToken, store.state.todo[i]._id)
+    //     store.dispatch('removeItem', { i })
+    //   })
+    //   console.log(i);
+    //   console.log(delBtnList[i]);
+    // }
+
+    this.anchor.querySelectorAll('button').forEach(button =>
       button.addEventListener('click', () => {
-        api.todosDelete(validToken, store.state.todo[id]._id)
-        store.dispatch('removeItem', { id })
+        let id =button.id.slice(7)*1;
+        api.todosDelete(validToken, store.state.todo[id]._id);
+        store.dispatch('removeItem', { id });
       })
     )
 
-    this.anchor.querySelectorAll('span').forEach((item, id) =>
-      item.addEventListener('click', () => {
+    this.anchor.querySelectorAll('span').forEach(task =>
+      task.addEventListener('click', () => {
         let bool; 
+        let id =task.id.slice(5)*1;
         store.state.todo[id].completed ? bool = false : bool = true;       
         api.todosUpdate(validToken, store.state.todo[id]._id, bool);
         store.state.todo[id].completed = bool;
-        bool ? item.style.textDecoration = 'line-through' : item.style.textDecoration = 'none';
+        // bool ? item.style.textDecoration = 'line-through' : item.style.textDecoration = 'none';
         this.render();
       })
     )

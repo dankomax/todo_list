@@ -5,7 +5,12 @@ export default class Store {
     this.reducers = reducers;
     this.state = {
       todo: [],
-      userInfo: {}
+      userInfo: {},
+      sortByOption: {
+        noFilter: 'noFilter',
+        todoFilter: 'todoFilter',
+        doneFilter: 'doneFilter'
+      }
     }
     this.events = new Observer();
   }

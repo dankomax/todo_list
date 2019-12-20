@@ -31,32 +31,29 @@
       </header>
       <div class="app">
         <section class="app__input">
-          <h2 class="app__heading">What you have done</h2>
-          <div class="js-items"></div>
           <form class="new-item boilerform js-form" id="add-new-item-form">
             <div class="boilerform">
-              <label for="new-item-field" class="new-item__label c-label">Add a new item</label>
-              <input type="text" class="new-item__details c-input-field" id="new-item-field" autocomplete="off" />
-              <button class="c-button new-item__button" >Save</button>
+              <!-- <label for="new-item-field" class="new-item__label c-label">Create new task</label> -->
+              <input type="text" class="new-item__details c-input-field" id="new-item-field" placeholder="Create new task" autocomplete="off" />
+              <button class="c-button new-item__button" >Create</button>
             </div>
           </form>
+          <h2 class="app__heading">Tasks that need to be done:</h2>
+          <div class="js-items"></div>     
         </section>
         <aside class="app__status">
           <p role="status" class="visually-hidden">You have done <span class="js-status">1 thing</span> today!</p>
           <div class="app__decor js-count" aria-hidden="true">
             <small >Number of tasks</small>
             <span id="total_count"></span>
-            <small >___________________</small></br>
           </div>
           <div class="app__decor js-count" aria-hidden="true">
             <small >Fineshed tasks</small>
             <span id="done_count"></span>
-            <small >___________________</small></br>
           </div>
           <div class="app__decor js-count" aria-hidden="true">
             <small >Unfineshed tasks</small>
             <span id="todo_count"></span>
-            <small >___________________</small></br>
           </div>
         </aside>
       </div>

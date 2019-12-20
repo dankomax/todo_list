@@ -5,6 +5,7 @@
   --btn-grey-hover: #343C45;
   --green: #4BB992;
   --text-light: #C9CBCE;
+  --text-semilight: #a8aaad;
 }
 
 html, body {
@@ -17,9 +18,12 @@ html, body {
                     Cantarell, 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
+
 main {
   width: 60%;
+  height: 100%;
   margin: 0 auto;
+  background-color: var(--back-grey);
 }
 
 
