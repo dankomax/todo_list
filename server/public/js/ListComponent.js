@@ -39,7 +39,7 @@ export default class ListComponent extends Component {
 
     submit.addEventListener('click', handleClick);
 
-
+    //helper function that allows to filter tasks
     const filterList = (displayTodo, displayDone) => {
       const liTodo = document.getElementsByClassName('todo');
       for(let i=0; i < liTodo.length; i++) {
@@ -51,13 +51,12 @@ export default class ListComponent extends Component {
       }
     };
 
+    //filter tasks depending on a chousen option
     document.getElementById('done_filter').addEventListener('click', () => filterList('none', 'block'));
     document.getElementById('todo_filter').addEventListener('click', () => filterList('block', 'none'));
     document.getElementById('total_filter').addEventListener('click', () => filterList('block', 'block'));
 
-
   }
-
 
 
   render() {
@@ -66,6 +65,8 @@ export default class ListComponent extends Component {
       return;
     }
 
+
+    //show dinamic stats about tasks
     let numOfTasks = store.state.todo.length;
     document.getElementById('total_count').innerHTML = numOfTasks;
     const arrDoneTasks = store.state.todo.filter(obj => obj.completed === true);
@@ -85,23 +86,26 @@ export default class ListComponent extends Component {
               <button type="button" class="del_mark" id="delBtn_${i}">x</button>
               <button type="button" class="check_mark" id="chkBtn_${i}">&#10003</button>              
               <span id="task_${i}">${todoItem.text}</span>  
+              <input type="text" class="change_task" id="change_${i}" value=${todoItem.text} autocomplete="off" />
             </li>`
           ).reverse().join('') 
         }
       </ul>
     `;
 
+    //handle click on a check mark element of li
     this.anchor.querySelectorAll('.check_mark').forEach(button =>
       button.addEventListener('click', () => {
         let bool;
         let id = button.id.slice(7)*1;
         store.state.todo[id].completed ? bool = false : bool = true;       
-        api.todosUpdate(validToken, store.state.todo[id]._id, bool);
+        api.todosUpdate(validToken, store.state.todo[id]._id, false, bool);
         store.state.todo[id].completed = bool;
         this.render();
       })
     )
 
+    //handle click on a delete button of li
     this.anchor.querySelectorAll('.del_mark').forEach(button =>
       button.addEventListener('click', () => {
         let id = button.id.slice(7)*1;
@@ -110,13 +114,25 @@ export default class ListComponent extends Component {
       })
     )
 
+    //handle click on text of li
     this.anchor.querySelectorAll('span').forEach(task =>
-      task.addEventListener('click', () => {
-        let bool; 
-        let id =task.id.slice(5)*1;
-        store.state.todo[id].completed ? bool = false : bool = true;       
-        api.todosUpdate(validToken, store.state.todo[id]._id, bool);
-        store.state.todo[id].completed = bool;
+      task.addEventListener('click', (event) => {
+        
+        event.target.style.display = 'none';
+
+        let id = task.id.slice(5)*1;
+        let inputField = this.anchor.querySelector(`#change_${id}`);
+        inputField.style.display = 'inline-block';
+        inputField.focus();
+      })
+    )
+
+    //save changes made in input field of li
+    this.anchor.querySelectorAll('.change_task').forEach(input =>
+      input.addEventListener('change', () => { 
+        let id =input.id.slice(7)*1;
+        api.todosUpdate(validToken, store.state.todo[id]._id, input.value,);
+        store.state.todo[id].text = input.value; 
         this.render();
       })
     )

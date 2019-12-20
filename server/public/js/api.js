@@ -82,15 +82,17 @@ export default {
     }).then(res => res.json())
   },
 
-  todosUpdate: (token, id, bool) => {
+  todosUpdate: (token, id, text, bool) => {
     // const todoTask=document.getElementById("new-item-field").value;
     // let id = '5df959b02ea70c0016826ec2';
+    const change = {};
+    if (text) { change["text"] = text };
+    if (bool !== undefined) { change["completed"] = bool };
+
     return fetch(`${url}todos/${id}`, {
       method: 'PUT',
       body:
-        JSON.stringify({
-          "completed": bool
-        }),
+        JSON.stringify(change),
       headers: {
         'Content-Type': 'application/json',
         'Authorization': token
