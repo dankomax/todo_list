@@ -66,7 +66,7 @@ export default class ListComponent extends Component {
     }
 
 
-    //show dinamic stats about tasks
+    //show dynamic stats about tasks
     let numOfTasks = store.state.todo.length;
     document.getElementById('total_count').innerHTML = numOfTasks;
     const arrDoneTasks = store.state.todo.filter(obj => obj.completed === true);

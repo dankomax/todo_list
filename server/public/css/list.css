@@ -153,6 +153,7 @@
 }
 
 .new-item__details {
+    width: 70%;
     background-color: var(--back-grey);
     color: var(--text-light);
     font-size: 1.3rem;
@@ -201,4 +202,19 @@
     clip-path: inset(1px);
     white-space: nowrap;
     position: absolute;
+}
+
+
+@media (max-width: 700px) {
+    main {
+        width: 90%;
+    }
+
+    .app {
+        grid-template-columns: 7fr 1fr;
+    }
+
+    .new-item__details {
+        width: 50%;
+    }
 }
