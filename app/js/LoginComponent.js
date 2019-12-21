@@ -10,22 +10,26 @@ import { validToken } from "./api.js"
 export default class LoginComponent extends Component {
   constructor(app, settings) {
     const template = document.getElementById('login').content.cloneNode(true);
-    //const app = document.getElementById('app');
+    // const app = document.getElementById('app');
     app.appendChild(template);
     super(
       store, 
       app
     );
+
+
     app.querySelector('#signIn').addEventListener('click', () => {
-      //console.log(settings.redirect)
       api.login()
         .then(res => api.authCheck(res))
-        .then(res =>  res ? link(settings.redirect) : alert('You need valid email and password!'))
-        // .then(res => console.log(validToken))
-        // .then(res => api.todosRead(validToken))
-        
+        .then(res =>  res ? link(settings.redirect) : alert('You need valid email and password!'))   
       
       //window.dispatchEvent(new CustomEvent('changeRoute', {detail: {route: 'list'}}));
+    });
+
+    app.querySelector('#signUpLink').addEventListener('click', () => {
+      link(settings.signup);
+
+      // window.dispatchEvent(new CustomEvent('changeRoute', {detail: {route: 'signUp'}}));
     });
   }
 

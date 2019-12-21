@@ -1,32 +1,34 @@
 const url = 'https://todo-app-back.herokuapp.com/';
 export let validToken;
 
-// let email = 'danko@gmail.com';
-// let password = '123789';
 
 export default {
-  register: () => {    
-    // let email = document.getElementById("email").value;
-    // let password = document.getElementById("password").value;
-    return fetch(`${url}register`, {
+  register: async () => {   
+    let username = document.getElementById("signUp-username").value;
+    let email = document.getElementById("signUp-email").value;
+    let password = document.getElementById("signUp-password").value;
+    
+    let token = fetch(`${url}register`, {
       method: 'POST',
       body:
         JSON.stringify({
           "email": email,
           "password": password,
-          "username": "danko",
+          "username": username,
         }),
       headers: {
         'Content-Type': 'application/json'
       }
     }).then(res => res.json())
+      .then(res => res.token ? res.token : 'Invalid user!')
+
+    validToken = await token;
+    return token;
   },
 
   login: async () => {
-    let email = 'dankomaksym@gmail.com';
-    let password = '1erk5drsapo';
-    // let email = document.getElementById("email").value;
-    // let password = document.getElementById("password").value;
+    let email = document.getElementById("email").value;
+    let password = document.getElementById("password").value;
 
     let token = fetch(`${url}login`, {
       method: 'POST',

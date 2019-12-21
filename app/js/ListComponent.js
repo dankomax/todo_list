@@ -1,10 +1,12 @@
 import Component from "./component.js";
 import store from "./store/index.js";
+import link from "./link.js";
+
 import api from "./api.js";
 import { validToken } from "./api.js"
 
 export default class ListComponent extends Component {
-  constructor(app) {
+  constructor(app, settings) {
     const template = document.getElementById('list').content.cloneNode(true);
     app.append(template);
 
@@ -55,6 +57,11 @@ export default class ListComponent extends Component {
     document.getElementById('done_filter').addEventListener('click', () => filterList('none', 'block'));
     document.getElementById('todo_filter').addEventListener('click', () => filterList('block', 'none'));
     document.getElementById('total_filter').addEventListener('click', () => filterList('block', 'block'));
+
+    document.querySelector('#logOutBtn').addEventListener('click', () => {
+      link(settings.redirect);
+      // window.dispatchEvent(new CustomEvent('changeRoute', {detail: {route: 'login'}}));
+    });
 
   }
 

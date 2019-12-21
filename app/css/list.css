@@ -11,6 +11,14 @@
 
 
 .intro {
+    position: fixed;
+    top: 0; 
+    display: inline-flex;
+    width: 60%;
+    height: 70px;
+    background-color: var(--back-grey);
+    z-index: 2;
+    justify-content: space-between;
     padding: 0 0 1rem 0;
     margin: 0 0 2rem 0;
     border-bottom: 1px solid var(--border);
@@ -19,6 +27,10 @@
 .intro__heading {
     text-align: center;
     font-weight: 400;
+}
+
+.intro__heading_small {
+    display: none;
 }
 
 .intro__summary {
@@ -30,12 +42,63 @@
 .intro__summary b {
     font-weight: 500;
 }
+
+
+#logOutBtn {
+  height: 50px;
+  cursor: pointer;
+  background-color: var(--back-dark);
+  color: var(--text-light);
+  border: 1px solid var(--text-light);
+  border-radius: 5px;
+  margin-top: auto;
+  padding: 0 35px;
+  font-size: 1.5rem;
+}
+
+#logOutBtn:hover{
+  background-color: var(--back-dark);
+}
+
+
 .app {
+    padding-top: 70px;
+    /*top: 100px;*/
     display: grid;
     grid-template-columns: 3fr 1fr;
     grid-auto-flow: row;
     grid-gap: 2rem;
 
+}
+
+.holder-of-input {
+    position: fixed;
+    padding-top: 103px;
+    width: 60%;
+    background-color: var(--back-grey);
+    z-index: 1;
+}
+
+.js-items {
+    width: 100%;
+    overflow: hidden;
+}
+
+#add-new-item-form {
+    position: fixed;
+    top: 105px; 
+    width: 50%;
+}
+
+.app__heading {
+    padding-top: 100px;
+}
+
+.app__status {
+    position: fixed;
+    top: 150px;
+    width: 15%;
+    right: 20%;
 }
 
 .app__decor {
@@ -85,7 +148,7 @@
 .app__items li {
     position: relative;
     padding: 0;
-    font-size: 1.3rem;
+    font-size: 1.3rem;  
 }
 
 .app__items .done span {
@@ -205,9 +268,42 @@
 }
 
 
-@media (max-width: 700px) {
+
+@media (max-width: 800px) {
+    .intro__heading {
+        display: none;
+    }
+
+    .intro__heading_small {
+        display: block;
+    }
+}
+
+
+@media (max-width: 1200px) {
     main {
         width: 90%;
+    }
+
+    .intro {
+        width: 90%;
+    }
+
+    .holder-of-input {
+        width: 90%;
+    }
+
+    #add-new-item-form {
+        width: 90%;
+    }
+
+    #new-item-field {
+        width: 70%;
+    }
+
+    .app__status {
+        width: 25%;
+        right: 3%;
     }
 
     .app {
