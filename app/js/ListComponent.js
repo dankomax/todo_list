@@ -16,10 +16,12 @@ export default class ListComponent extends Component {
       document.querySelector('.js-items')
     );
 
-    if (store.state.todo.length === 0) {
-      api.todosRead(validToken)
-        .then(res => res.map(task => store.dispatch('addItem', task)))
+    if (store.state.todo.length) {
+      store.state.todo = [];
     }
+
+    api.todosRead(validToken)
+        .then(res => res.map(task => store.dispatch('addItem', task)))
     
 
 
