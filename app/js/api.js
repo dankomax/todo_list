@@ -85,8 +85,7 @@ export default {
   },
 
   todosUpdate: (token, id, text, bool) => {
-    // const todoTask=document.getElementById("new-item-field").value;
-    // let id = '5df959b02ea70c0016826ec2';
+
     const change = {};
     if (text) { change["text"] = text };
     if (bool !== undefined) { change["completed"] = bool };
@@ -100,13 +99,10 @@ export default {
         'Authorization': token
       }
     }).then(res => res.json())
-      // .then(console.log)
-      // .then(res => todosRead())
   },
 
   todosDelete: (token, id) => {
-    // const todoTask=document.getElementById("new-item-field").value;
-    // let id = '5df959b02ea70c0016826ec2';
+
     return fetch(`${url}todos/${id}`, {
       method: 'DELETE',
       headers: {
@@ -114,8 +110,7 @@ export default {
         'Authorization': token
       }
     }).then(res => res.json())
-      // .then(console.log)
-      // .then(res => todosRead())
   }
+
 }
 

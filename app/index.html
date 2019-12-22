@@ -4,7 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>State Management</title>
+    <title>Wonder List</title>
+    <link rel="stylesheet" href="./css/main.css">
     <link rel="stylesheet" href="./css/login.css">
     <link rel="stylesheet" href="./css/list.css">
 </head> 
@@ -12,11 +13,11 @@
   <template id="login">
     <div class="signInForm">
       <h2>To-Do Wonder List</h2>
-      <form action="javascript:void(0);">
+      <form action="javascript:void(0);" id="loginForm">
         <input type="email" id="email" name="login-email" placeholder="Email" 
           pattern="[a-zA-Z0-9!#$%&amp;'*+\/=?^_`{|}~.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*" required />
         <input type="password" id="password" name="login-password" placeholder="Password" 
-          pattern=".{6,}" required />
+          pattern=".{6,}" title="6 characters minimum" required />
         <button type="submit" id="signIn">Sign In</button>
       </form>
       <a type="button" id="signUpLink">Sign Up</a>
@@ -42,7 +43,7 @@
   <template id="list">
     <div class="toDoList">
       <header class="intro">
-        <h1 class="intro__heading">Welcome to, Wonder-List :)</h1>
+        <h1 class="intro__heading">Welcome to, Wonder List :)</h1>
         <h1 class="intro__heading_small">Wonder-List :)</h1>
         <button type="button" id="logOutBtn">Log Out</button>
       </header>
@@ -51,7 +52,6 @@
           <div class="holder-of-input">
             <form class="new-item boilerform js-form" id="add-new-item-form">
               <div class="boilerform">
-                <!-- <label for="new-item-field" class="new-item__label c-label">Create new task</label> -->
                 <input type="text" class="new-item__details c-input-field" id="new-item-field" placeholder="Create new task" autocomplete="off" />
                 <button class="c-button new-item__button" >Create</button>
               </div>
@@ -80,10 +80,9 @@
   </template>
 
   <main id="app">
-    <!--<section class="app" id="app"></section> -->
+
   </main>
 
-  <!-- <script src="./public/js/api.js"></script> -->
   <script src="./js/main.js" type="module" ></script>
 
 
