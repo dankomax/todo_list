@@ -21,7 +21,7 @@ export default class ListComponent extends Component {
     }
 
     api.todosRead(validToken)
-        .then(res => res.map(task => store.dispatch('addItem', task)))
+      .then(res => res.products.map(task => store.dispatch('addItem', task)))
     
 
 
@@ -30,6 +30,7 @@ export default class ListComponent extends Component {
     
     const handleClick = event => {
       event.preventDefault();
+
       let value = input.value.trim();
 
       if (value.length > 4) {

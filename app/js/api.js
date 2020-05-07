@@ -1,4 +1,4 @@
-const url = 'https://todo-app-back.herokuapp.com/';
+const url = 'https://todo-wonder-list-api.herokuapp.com/';
 export let validToken;
 
 
